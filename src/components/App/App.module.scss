@@ -1,0 +1,225 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.app {
+  animation: fadeIn 1s forwards;
+  position: relative;
+  height: 100vh;
+  display: flex;
+
+  &__left {
+    position: fixed;
+    width: 30%;
+    background-color: #111b21;
+    height: 100vh;
+  }
+
+  &__contacts {
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &_icon {
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__users {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: 0.5s all;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0 10px;
+
+    &:hover {
+      background-color: #242424;
+    }
+
+    &:active {
+      transform: scale(1.05);
+    }
+
+    &_active {
+      background-color: #242424;
+    }
+  }
+
+  &__right {
+    position: fixed;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    animation: fadeIn 1s forwards;
+  }
+
+  [contenteditable="true"]:empty:before {
+    content: attr(placeholder);
+    text-align: left;
+    color: $dark-gray;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    width: 100%;
+    background-color: #202c33;
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background: url("../../assets/bg.png") center/cover no-repeat;
+
+    @include scrollCustomWrapper;
+  }
+
+  &__content {
+    padding: 0 63px;
+    margin-bottom: 5px;
+
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+
+    &_incoming {
+      align-items: start;
+    }
+
+    &:first-child {
+      margin-top: 12px;
+    }
+
+    &:last-child {
+      margin-bottom: 12px;
+    }
+
+    &_bg {
+      background-color: #005c4b;
+      padding: 5px;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      max-width: 70%;
+      min-width: 10%;
+
+      &_incoming {
+        background-color: $dark-gray;
+        align-items: flex-start;
+        color: white;
+      }
+    }
+
+    &_text {
+      word-break: break-all;
+    }
+
+    &_span {
+      font-size: 13px;
+      color: gray;
+    }
+  }
+
+  &__web {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: none;
+
+    &_descr {
+      width: 400px;
+    }
+
+    &_title {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__bottom {
+    position: relative;
+    bottom: 0;
+    background-color: #202c33;
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+    }
+
+    &_btn {
+      border: none;
+      background: transparent;
+      color: #8696a0;
+      cursor: pointer;
+      transition: 0.3s all;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    &_input {
+      width: 90%;
+      min-height: 35px;
+      max-height: 100px;
+      overflow-y: auto;
+      outline: 1px solid #2a3942;
+      border: none;
+      color: $primary-white;
+      border-radius: 4px;
+      transition: 0.5s all;
+      font-size: 18px;
+      text-align: center;
+      background-color: #2a3942;
+      padding: 10px;
+      margin: 10px;
+      will-change: height;
+
+      @include scrollCustom;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,29 @@
+@mixin scrollCustom {
+  &::-webkit-scrollbar {
+    width: 5px;
+    
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #202c33;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: #2a3942;
+  }
+}
+
+@mixin scrollCustomWrapper {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color:#2a3942; /* Цвет полосы прокрутки */
+    
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}

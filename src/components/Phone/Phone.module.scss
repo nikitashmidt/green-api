@@ -1,0 +1,101 @@
+@import "../../styles/variables";
+
+.phone {
+  animation: fadeIn 1s forwards;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.input {
+  width: 300px;
+  height: 54px;
+  padding: 12px 16px;
+  outline: 1px solid $primary-light-gray;
+  border: none;
+  color: $dark-gray;
+  border-radius: 4px;
+  transition: 0.5s all;
+  font-size: 24px;
+
+  &::placeholder {
+    color: $secondary-gray;
+  }
+
+  background-color: $secondary-black;
+  color: $primary-light-gray;
+  outline: 1px solid $secondary-black;
+
+  &:hover {
+    outline: 1px solid $dark-gray;
+  }
+
+  &:focus {
+    outline: 1px solid $primary-light-gray;
+  }
+
+  &__error {
+    outline: 1px solid $accent-error;
+
+    &:hover,
+    &:focus {
+      outline: 1px solid $accent-error;
+    }
+  }
+}
+
+.button {
+  color: $primary-white;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  border: none;
+  outline: 1px solid#1a1a1a;
+  transition: 0.5s all;
+  z-index: 3;
+
+  &:hover {
+    outline: 1px solid $dark-gray;
+  }
+
+  &:active {
+    outline: 1px solid $primary-light-gray;
+  }
+}
+
+.error {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: rgba(255, 0, 0, 0.67);
+  transition: 1s all;
+  position: absolute;
+  font-weight: bold;
+  animation: fadeIn 1s forwards;
+  bottom: -40px;
+  font-size: 14px;
+}
