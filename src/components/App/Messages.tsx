@@ -7,8 +7,14 @@ import { ReactComponent as UserIcon } from "../../assets/user.svg";
 import { ReactComponent as SendIcon } from "../../assets/send.svg";
 import { useAppDispatch, useAppSelector } from "../../store/useStore";
 import { authSelector, messagesSelector } from "../../store/selectors";
-import { getHistory, sendMessages } from "../../store/slices/messagesSlice";
-import { IGetMessagesHistory } from "../../types";
+import {
+  getHistory,
+  sendMessages,
+  addMessages,
+  getReceiveNotification,
+  getDeleteNotification,
+} from "../../store/slices/messagesSlice";
+import type { IGetMessagesHistory, IMessages, ITokens } from "../../types";
 
 import styles from "./App.module.scss";
 
@@ -38,8 +44,28 @@ export const Messages = ({ phone }: IMessagesProps) => {
     };
 
     dispatch(getHistory(data));
-  }, [dispatch, idInstance, apiTokenInstance, newPhone]);
-  
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const data: ITokens = {
+        idInstance,
+        apiTokenInstance,
+      };
+
+      const result = await dispatch(getReceiveNotification(data));
+
+      if (result.meta.requestStatus === "fulfilled") {
+        console.log("fullfilled");
+      }
+
+      data
+
+      dispatch(getDeleteNotification(data));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChange = (evt: ContentEditableEvent) => {
     text.current = evt.target.value;
@@ -76,14 +102,17 @@ export const Messages = ({ phone }: IMessagesProps) => {
       })
     );
 
-    // const data: IMessages = {
-    //   timestamp: `${new Date().getHours()}:${new Date().getMinutes()}`,
-    //   text: text.current,
-    // };
+    const unixTime = Math.floor(new Date().getTime() / 1000);
+
+    const data: IMessages = {
+      timestamp: unixTime,
+      textMessage: text.current,
+      type: "outgoing",
+    };
 
     // добавления в стор
 
-    // dispatch(addMessages(data));
+    dispatch(addMessages(data));
     text.current = "";
     setPlaceholder("Enter your message");
   }

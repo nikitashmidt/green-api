@@ -15,7 +15,7 @@ import styles from "./App.module.scss";
 function App() {
   const { statusAuthorization, phones } = useAppSelector(authSelector);
 
-  // const { messages } = useAppSelector(messagesSelector);
+  const { messages } = useAppSelector(messagesSelector);
 
   const [currentId, setCurrentId] = useState("");
 
@@ -58,7 +58,9 @@ function App() {
                 </div>
                 <div>
                   <div key={uid()}>{item}</div>
-                  <div>Last SMS</div>
+                  <div>
+                    {messages[messages.length - 1] && messages[messages.length - 1].textMessage}
+                  </div>
                 </div>
               </div>
             );

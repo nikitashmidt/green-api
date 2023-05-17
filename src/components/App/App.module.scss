@@ -92,6 +92,7 @@
     height: 100vh;
     overflow: auto;
     background: url("../../assets/bg.png") center/cover no-repeat;
+    animation: fadeIn 1s forwards;
 
     @include scrollCustomWrapper;
   }

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { IAuth } from "../../types";
+import type { ITokens } from "../../types";
 import { authLogin } from "../../api";
 
 export type AuthState = {
@@ -11,7 +11,7 @@ export type AuthState = {
   apiTokenInstance: string;
 };
 
-export const loginUser = createAsyncThunk("auth/login", async (data: IAuth) =>
+export const loginUser = createAsyncThunk("auth/login", async (data: ITokens) =>
   authLogin(data)
 );
 
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       state.phones.push(action.payload);
     },
 
-    addTokens(state, action: PayloadAction<IAuth>) {
+    addTokens(state, action: PayloadAction<ITokens>) {
       state.idInstance = action.payload.idInstance;
       state.apiTokenInstance = action.payload.apiTokenInstance;
     },
